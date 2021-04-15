@@ -55,12 +55,25 @@ function createBookCard(item, index) {
         let bookCardMain = document.createElement('div');
         let bookCardFooter = document.createElement('div');
 
-        let title = document.createElement('h2');
-        let author = document.createElement('h4');
+        let title = document.createElement('h4');
+        let author = document.createElement('h5');
         let pages = document.createElement('h6');
     
+        let checkboxDiv = document.createElement('div');
+        checkboxDiv.classList.add('form-check', 'form-switch');
+        
         let checkbox = document.createElement('input');
+        checkbox.classList.add('form-check-input');
+        checkbox.setAttribute('name', `read-${index}`);
         checkbox.setAttribute("type", "checkbox");
+
+        let label = document.createElement('label');
+        label.classList.add('form-check-label');
+        label.setAttribute('for', `read-${index}`);
+        label.textContent = 'Read';
+
+        checkboxDiv.appendChild(checkbox);
+        checkboxDiv.appendChild(label);
         
         let removeButton = document.createElement('button');
         removeButton.id = `remove-${index}`;
@@ -75,7 +88,7 @@ function createBookCard(item, index) {
         bookCardHeader.appendChild(title);
         bookCardMain.appendChild(author);
         bookCardMain.appendChild(pages);
-        bookCardFooter.appendChild(checkbox);
+        bookCardFooter.appendChild(checkboxDiv);
         bookCardFooter.appendChild(removeButton);
 
         bookCard.appendChild(bookCardCover);
@@ -86,7 +99,8 @@ function createBookCard(item, index) {
         bookCard.appendChild(bookCardInfo);
     
         if (item.read) checkbox.checked = true;
-    
+
+
         bookCard.classList.add('book-card');
         bookCardCover.classList.add('book-card-cover');
         bookCardInfo.classList.add('book-card-info');
@@ -94,14 +108,15 @@ function createBookCard(item, index) {
         bookCardMain.classList.add('book-card-main');
         bookCardFooter.classList.add('book-card-footer');
 
-        removeButton.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'btn-round')
+        removeButton.classList.add('btn', 'btn-outline-danger', 'btn-sm');
+        removeButton.style.border = 'none';
 
         removeButton.addEventListener('click', () => {
             item.remove();
             renderLibrary();
         })
 
-        checkbox.addEventListener('click', () => {
+        checkbox.addEventListener('transitionend', () => {
             if (item.read) {item.read = false} else {item.read = true};
             renderLibrary();
             console.log(myLibrary[index]);

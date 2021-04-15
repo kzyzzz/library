@@ -8,12 +8,12 @@
 body{
     background-color: var(--bg-dark);
     color: #fff;
+    font-family: 'Oswald', sans-serif;
 }
 .container{
     display: flex;
     justify-content: center;
     margin: 5vh auto 0 auto;
-    max-width: 1300px;
     
 }
 .library{
@@ -41,16 +41,21 @@ body{
     flex-direction: column;
 }
 .book-card-header{
+    flex-grow: 9;
+    overflow-wrap: break-word;
     padding: 5px 0 0 10px;
 }
 .book-card-main{
+    flex-grow: 9;
+    padding-top: 5px;
     background-color: var(--bg-main);
     padding-left: 10px;
 }
 .book-card-footer{
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
-    padding: 6px;
+    padding: 5px 10px;
 }
 .add-book-form{
     display: none;
@@ -61,14 +66,16 @@ body{
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 #form{
     display: flex;
     flex-direction: column;
     padding: 20px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--bg-dark2);
+    box-shadow: 4px 4px 10px 3px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.4);
 }
 #addBook{
     position: absolute;
