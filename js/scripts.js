@@ -3,7 +3,32 @@ let addButton = document.querySelector('#addBook');
 let library = document.querySelector('.library');
 let input = addBookForm.querySelectorAll('input');
 
-let myLibrary = [];
+let myLibrary = [
+    {
+        title: 'Anna Karenina',
+        author: 'Leo Tolstoy',
+        pages:  '350',
+        read: false
+    },
+    {
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
+        pages:  '300',
+        read: true
+    },
+    {
+        title: 'Great Expectations',
+        author: 'Charles Dickens',
+        pages:  '318',
+        read: true
+    },
+    {
+        title: 'Tne Hundred Years of Solitude',
+        author: 'Gabriel Garcia Marquez',
+        pages: '450',
+        read: true
+    }
+];
 
 getData();
 renderLibrary();
