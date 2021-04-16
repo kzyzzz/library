@@ -163,9 +163,11 @@ function setData() {
 
 function getData() {
     let storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-    storedLibrary.map((book) => {
-        addBookToLibrary(book.title, book.author, book.pages, book.read);
-    });
+    if (storedLibrary != null) {
+        storedLibrary.map((book) => {
+            addBookToLibrary(book.title, book.author, book.pages, book.read);
+        });
+    }
 }
 
 let checkboxes = document.querySelectorAll('.form-check-input');
