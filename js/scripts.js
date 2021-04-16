@@ -189,6 +189,7 @@ function setData() {
 function getData() {
     let storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
     if (storedLibrary != null) {
+        myLibrary = [];
         storedLibrary.map((book) => {
             addBookToLibrary(book.title, book.author, book.pages, book.read);
         });
