@@ -30,29 +30,26 @@ let myLibrary = [
     }
 ];
 
-getData();
-renderLibrary();
-
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;  
+    }
+    remove() {
+        console.log(myLibrary.indexOf(this));
+        myLibrary.splice(myLibrary.indexOf(this), 1);
+    }
+    read(state) {
+        this.read = state;
+    }
+    info() {
+        return {title, author, pages, read}; 
+    }
+    
 }
 
-Book.prototype.remove = function(){
-    console.log(myLibrary.indexOf(this));
-    myLibrary.splice(myLibrary.indexOf(this), 1);
-}
-
-Book.prototype.read = function(state){
-    this.read = state;
-}
-
-Book.prototype.info = function() {
-    return `{title:${this.title},author:${this.author},pages:${this.pages},read:${this.read}}`;
-}
 
 function addBookToLibrary(title, author, pages, read){
     let newBook = new Book(title, author, pages, read);
@@ -142,7 +139,7 @@ function createBookCard(item, index) {
         })
 
         checkbox.addEventListener('transitionend', () => {
-            if (item.read) {item.read = false} else {item.read = true};
+            item.read = checkbox.checked;
             renderLibrary();
             console.log(myLibrary[index]);
         })
@@ -196,10 +193,6 @@ function getData() {
     }
 }
 
-let checkboxes = document.querySelectorAll('.form-check-input');
-console.log(checkboxes);
-checkboxes.forEach((checkbox)=>{
-    checkbox.addEventListener('click', ()=>{
-        console.log(checkbox.name);
-    });
-})
+
+getData();
+renderLibrary();
